@@ -13,7 +13,7 @@ for each asset they hold a trustline to.
     import { page } from '$app/stores'
 </script>
 
-<h3>Assets Overview</h3>
+
 <div class="stats stats-vertical w-full bg-primary text-primary-content shadow lg:stats-horizontal">
     {#each $page.data.balances as balance}
         <div class="stat">
