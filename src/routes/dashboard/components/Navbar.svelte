@@ -19,7 +19,7 @@ More information about SEP-33 can be found here:
     import { page } from '$app/stores'
 </script>
 
-<header class="navbar bg-base-300">
+<header class="navbar bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 text-white">
     <label for="drawer-toggle" class="btn-ghost drawer-button btn-square btn lg:hidden"
         ><MenuIcon size="24" /></label
     >

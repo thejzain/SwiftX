@@ -27,8 +27,5 @@ For more details, check out the DaisyUI documentation on Drawer layouts:
             <slot />
         </main>
     </div>
-    <div class="drawer-side z-10 lg:h-auto">
-        <label for="drawer-toggle" class="drawer-overlay" />
-        <SidebarMenu />
-    </div>
+    
 </div>

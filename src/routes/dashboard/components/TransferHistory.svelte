@@ -1,12 +1,5 @@
-<!--
-@component
-
-The `TransferHistory` component will display a listing of details concerning any
-transfers the user has initiated with an anchor.
--->
-
 <script>
-    // We import any stores we will need to read and/or write
+    
     import { page } from '$app/stores'
     import { transfers } from '$lib/stores/transfersStore'
     import { webAuthStore } from '$lib/stores/webAuthStore'

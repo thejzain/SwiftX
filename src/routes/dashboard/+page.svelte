@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import AssetStats from './components/AssetStats.svelte';
+    import SidebarMenu from './components/SidebarMenu.svelte';
     import RecentPayments from './components/RecentPayments.svelte';
     import FavoriteContacts from './components/FavoriteContacts.svelte';
     import TransferHistory from './components/TransferHistory.svelte';
@@ -15,17 +16,15 @@
 <!-- Main Dashboard Layout -->
 <div class="dashboard flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 text-white">
     <!-- Sidebar for navigation or quick links -->
-    <div class="sidebar lg:w-1/4 p-8 bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col justify-between">
+    <div class="sidebar lg:w-1/4 pl-8 pr-8 pb-8 bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col justify-between">
         <div class="mt-10">
-            <h2 class="text-2xl font-bold mb-4">My Balance</h2>
+            <h2 class="text-4xl font-bold mb-4">My Balance</h2>
             <AssetStats />
         </div>
-        <nav class="mt-10">
-            <ul>
-                <li class="mb-4"><a href="#payments" class="text-lg font-semibold">Recent Payments</a></li>
-                <li class="mb-4"><a href="#contacts" class="text-lg font-semibold">Favorite Contacts</a></li>
-                <li><a href="#transfers" class="text-lg font-semibold">Transfer History</a></li>
-            </ul>
+        <nav class="menu h-full w-80 pl--10 text-3xl">
+            
+                <SidebarMenu />
+            
         </nav>
        
     </div>
@@ -53,7 +52,7 @@
 
 <style>
     .dashboard {
-        background: #FFFFF0;
+        background: #0d011b;
         background-size: cover;
     }
 
