@@ -11,7 +11,7 @@
     ]
 </script>
 
-<ul class="menu h-80 w-80 p-4 text-3xl bg-#6419e6 rounded-lg shadow-lg text-base-content">
+<ul class="menu h-80 w-80 p-4 text-3xl bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg shadow-lg text-base-content">
     {#each dashboardRoutes as route}
         {@const linkClass = $page.route.id === route.route ? 'active': ''}
         <li>

@@ -16,12 +16,12 @@
 <!-- Main Dashboard Layout -->
 <div class="dashboard flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 text-white">
     <!-- Sidebar for navigation or quick links -->
-    <div class="sidebar lg:w-1/4 pl-8 pr-8 pb-8 bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col justify-between">
+    <div class="sidebar lg:w-1/4 pl-8 pr-8 pb-8 bg-gradient-to-r from-purple-600 to-purple-700 text-white">
         <div class="mt-10">
-            <h2 class="text-4xl font-bold mb-4">My Balance</h2>
+            <h2 class="text-4xl font-bold text-white mb-4">My Balance</h2>
             <AssetStats />
         </div>
-        <nav class="menu h-full w-80 pl--10 text-3xl">
+        <nav class="menu h-full w-80 pl--10 text-3xl text-white">
             
                 <SidebarMenu />
             
@@ -30,23 +30,17 @@
     </div>
 
     <!-- Main content area -->
-    <div class="content flex-1 p-8">
+    <div class="content flex-1 p-8 bg-white">
         <!-- `RecentPayments` displayed at the top of the dashboard -->
         <div id="recent-payments" class="mb-10">
-            <h2 class="text-2xl font-bold mb-4">Recent Payments</h2>
+            
             <div class="recent-payments grid grid-cols-1 gap-6">
                 <RecentPayments />
             </div>
-            <button class="see-all-btn btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full mt-6" on:click={toggleTransferHistory}>See All Transactions</button>
+            
         </div>
 
-        {#if showTransferHistory}
-        <!-- `TransferHistory` displayed below `RecentPayments` when button is clicked -->
-        <div id="transfers" class="mt-10 overflow-x-auto bg-white bg-opacity-10 rounded-lg p-6">
-            <h2 class="text-2xl font-bold mb-4">Transfer History</h2>
-            <TransferHistory />
-        </div>
-        {/if}
+       
     </div>
 </div>
 

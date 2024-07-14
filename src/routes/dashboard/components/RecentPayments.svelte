@@ -22,9 +22,9 @@ balances.
     /** @typedef {import('stellar-sdk').ServerApi.EffectRecord} EffectRecord */
 </script>
 
-<h3>Recent Payments</h3>
+<h3>MY TRANSACTIONS</h3>
 <table class="table">
-    <thead>
+    <thead class="bcd">
         <tr>
             <th>Amount</th>
             <th>Asset</th>
@@ -32,7 +32,7 @@ balances.
             <th>Address</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="cde ">
         {#each $page.data.payments as payment}
             <tr>
                 <th>
@@ -87,3 +87,19 @@ balances.
         {/each}
     </tbody>
 </table>
+
+<style>
+    h3{
+        font-size: 3rem;
+        color: black;
+        
+    }
+    .bcd{
+        font-size: 1.26rem ;
+        color: black;
+    }
+    .cde{
+        font-size: 1.26rem ;
+        color: black;
+    }
+</style>

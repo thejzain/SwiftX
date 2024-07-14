@@ -21,7 +21,7 @@ For more details, check out the DaisyUI documentation on Drawer layouts:
 
 <div class="drawer grow lg:drawer-open">
     <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col">
+    <div class="drawer-content flex flex-col ">
         <main class="prose max-w-full p-6">
             <ErrorAlert />
             <slot />
