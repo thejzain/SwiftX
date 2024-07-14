@@ -16,7 +16,7 @@ SwiftX allows users to send and receive payments internationally by:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/swiftX.git
+git clone https://github.com/thejzain/SwiftX
 ```
 
 2. Install dependencies and start the development server:
