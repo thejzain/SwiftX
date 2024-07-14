@@ -5,6 +5,7 @@ import adapter from '@sveltejs/adapter-static'
 const config = {
     kit: {
         adapter: adapter({
+            runtime: 'nodejs18.x',
             fallback: 'index.html',
         }),
     },
