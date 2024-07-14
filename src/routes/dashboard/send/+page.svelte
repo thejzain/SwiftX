@@ -1,37 +1,20 @@
-<!--
-@component
 
-The `/dashboard/send` page allows the user to send payments to other Stellar
-addresses. They can select from a dropdown containing their contact list names,
-or they could enter their own "Other..." public key. The following additional
-features have been implemented:
-
-- If the destination address is _not_ a funded account, the user is informed
-  they will be using a `createAccount` operation, and must send at least 1 XLM.
-- The user can select to send/receive different assets, and paths are queried
-  from horizon depending on:
-  1. if they want to strict send or strict receive,
-  2. the source/destination assets they have selected,
-  3. the source/destination accounts, and
-  4. the amount entered for the send/receive value.
-- An optional memo field is available for text-only memos.
--->
 
 <script>
-    // `export let data` allows us to pull in any parent load data for use here.
+   
     /** @type {import('./$types').PageData} */
     export let data
 
-    // We import any Svelte components we will need
+    
     import ConfirmationModal from '$lib/components/ConfirmationModal.svelte'
     import InfoAlert from '$lib/components/InfoAlert.svelte'
 
-    // We import any stores we will need to read and/or write
+    
     import { infoMessage } from '$lib/stores/alertsStore'
     import { contacts } from '$lib/stores/contactsStore'
     import { walletStore } from '$lib/stores/walletStore'
 
-    // We import some of our `$lib` functions
+    
     import {
         fetchAccount,
         submit,
@@ -46,11 +29,11 @@ features have been implemented:
         createPaymentTransaction,
     } from '$lib/stellar/transactions'
 
-    // The `open` Svelte context is used to open the confirmation modal
+    
     import { getContext } from 'svelte'
     const { open } = getContext('simple-modal')
 
-    // Define some component variables that will be used throughout the page
+    
     let destination = ''
     $: otherDestination = destination === 'other'
     let otherPublicKey = ''
@@ -75,18 +58,14 @@ features have been implemented:
      * @param {string} publicKey Public Stellar address to check on the network
      */
     let checkDestination = async (publicKey) => {
-        // Only do this if the `publicKey` is not "other". This check lets us
-        // use the same function for both the select dropdown, and the
-        // `otherPublicKey` input element.
+       
         if (publicKey !== 'other') {
             try {
-                // If the account returns successfully, ensure we're not using a
-                // `createAccount` operation
+                
                 await fetchAccount(publicKey)
                 createAccount = false
             } catch (err) {
-                // Otherwise, inform the user about what will take place
-                // @ts-ignore
+                
                 if (err.status === 404) {
                     createAccount = true
                     sendAsset = 'native'
@@ -227,13 +206,9 @@ features have been implemented:
     }
 </script>
 
-<h1>Send a Payment</h1>
-<p>
-    The <code>/dashboard/send</code> page allows the user to send payments to other Stellar addresses.
-    They can select from a dropdown containing their contact list names, or they could enter their own
-    "Other..." public key.
-</p>
-<p>Please complete the fields below to send a payment on the Stellar network.</p>
+<h1>Send Money</h1>
+
+<p>Please complete the fields below to send a payment to your loved ones.</p>
 
 <!-- Destination -->
 <div class="form-control my-5">
@@ -419,7 +394,7 @@ features have been implemented:
                         name="amount"
                         class="input-bordered input join-item w-full"
                         type="text"
-                        placeholder="0.01"
+                        placeholder="Enter Amount"
                         bind:value={sendAmount}
                     />
                 </div>

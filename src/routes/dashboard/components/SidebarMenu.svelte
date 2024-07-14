@@ -1,11 +1,12 @@
 
 
 <script>
-    // We import any stores we will need to read and/or write
+    
     import { page } from '$app/stores'
     const dashboardRoutes = [
         { route: '/dashboard/contacts', text: 'Friend List' },    
         { route: '/dashboard/send', text: 'Send Money ' },
+        { route: '/dashboard/send', text: 'Receive Money ' },
         
        
     ]

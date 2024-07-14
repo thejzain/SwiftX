@@ -14,6 +14,7 @@ More information about SEP-33 can be found here:
 <script>
     // We import things from external packages that will be needed
     import { MenuIcon } from 'svelte-feather-icons'
+    import img from './logo.png'
 
     // We import any stores we will need to read and/or write
     import { page } from '$app/stores'
@@ -24,28 +25,49 @@ More information about SEP-33 can be found here:
         ><MenuIcon size="24" /></label
     >
     <div class="flex-1">
-        <a href="/dashboard" class="btn-ghost btn text-xl normal-case">SwiftEx</a>
+        <a href="/dashboard" class="btn-ghost btn text-4xl normal-case">SwiftX</a>
     </div>
-    <div class="flex-none">
-        <div class="dropdown-end dropdown">
-            <button tabindex="0" class="btn-ghost btn-circle avatar btn">
-                <div class="w-10 rounded-full">
-                    <img
-                        src={`https://id.lobstr.co/${$page.data.publicKey}.png`}
-                        alt="stellar-account-identicon"
-                    />
-                </div>
-            </button>
-            <ul
-                class="menu-compact dropdown-content menu rounded-box z-10 mt-3 w-52 bg-base-100 p-2 shadow"
-            >
-                <li>
-                    <a href="/dashboard/settings/kyc" class="justify-between">
-                        Manage KYC Information
-                    </a>
-                </li>
-                <li><a href="/dashboard/settings/dev">Dev Helpers</a></li>
-            </ul>
-        </div>
+    <div class="relative flex items-center justify-center w-16 h-16">
+        <img
+            src="https://file.loading.io/resources/icon/kcjcu0.svg"
+            alt="Mailbox"
+            class="w-12 h-12"
+        />
+        <span class="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
     </div>
 </header>
+<style>
+    .relative {
+        position: relative;
+    }
+    .absolute {
+        position: absolute;
+    }
+    .top-0 {
+        top: 0;
+    }
+    .right-0 {
+        right: 0;
+    }
+    .w-5 {
+        width: 1.25rem;
+    }
+    .h-5 {
+        height: 1.25rem;
+    }
+    .text-xs {
+        font-size: 0.75rem;
+    }
+    .font-bold {
+        font-weight: 700;
+    }
+    .text-white {
+        color: #fff;
+    }
+    .bg-red-500 {
+        background-color: #f56565;
+    }
+    .rounded-full {
+        border-radius: 9999px;
+    }
+</style>
