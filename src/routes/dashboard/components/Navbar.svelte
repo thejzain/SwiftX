@@ -27,15 +27,19 @@ More information about SEP-33 can be found here:
     <div class="flex-1">
         <a href="/dashboard" class="btn-ghost btn text-4xl normal-case">SwiftX</a>
     </div>
-    <div class="relative flex items-center justify-center w-16 h-16">
+    <div class="relative flex h-16 w-16 items-center justify-center">
         <img
-            src="https://file.loading.io/resources/icon/kcjcu0.svg"
+            src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi2aSucOz-Gd2wa5KVQjEWvlfc_3j79c1BFw&s'}
             alt="Mailbox"
-            class="w-12 h-12"
+            class="h-12 w-12"
         />
-        <span class="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
+        <span
+            class="absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white"
+            >3</span
+        >
     </div>
 </header>
+
 <style>
     .relative {
         position: relative;
