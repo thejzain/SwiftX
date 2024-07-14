@@ -217,7 +217,9 @@ features have been implemented:
         // Open the confirmation modal for the user to confirm or reject the
         // transaction. We provide our customized `onConfirm` function, but we
         // have no need to customize and pass an `onReject` function.
+        console.log('check me' + paymentXDR + paymentNetwork)
         open(ConfirmationModal, {
+            sendamount: sendAmount,
             transactionXDR: paymentXDR,
             transactionNetwork: paymentNetwork,
             onConfirm: onConfirm,

@@ -24,6 +24,7 @@ on the following occasions:
     import { CopyIcon } from 'svelte-feather-icons'
     import { errorMessage } from '$lib/stores/alertsStore'
     import ErrorAlert from './ErrorAlert.svelte'
+    import { OnrampWebSDK } from '@onramp.money/onramp-web-sdk'
 
     // We will use the `walletStore.confirmPincode` to ensure the user knows the
     // encryption password to the keypair before we attempt to sign anything
@@ -41,9 +42,33 @@ on the following occasions:
     // `onConfirm` is a dummy function that will be overridden from the
     // component that launches the modal
     export let onConfirm = async () => {}
+    /** @type {import('stellar-sdk').Transaction}*/
+    // @ts-ignore
+    $: transaction = transactionXDR
+        ? TransactionBuilder.fromXDR(transactionXDR, transactionNetwork || Networks.TESTNET)
+        : null
+    // const sendmon = this.sendamount
     // `_onConfirm` is actually run when the user clicks the modal's "confirm"
     // button, and calls (in-turn) the supplied `onConfirm` function
     const _onConfirm = async () => {
+        console.log(transaction)
+        const onrampInstance = new OnrampWebSDK({
+            appId: 1, // replace this with the appID you got during onboarding process
+            walletAddress: $walletStore.publicKey, // replace with user's wallet address
+            flowType: 1, // 1 -> onramp || 2 -> offramp || 3 -> Merchant checkout
+            fiatType: 1, // 1 -> INR || 2 -> TRY || 3 -> AED || 4 -> MXN || 5-> VND || 6 -> NGN etc. visit Fiat Currencies page to view full list of supported fiat currencies
+            paymentMethod: 1, // 1 -> Instant transafer(UPI) || 2 -> Bank transfer(IMPS/FAST)
+            coinCode: 'xlm',
+            coinAmount: Number(transaction),
+            lang: 'en', // for more lang values refer
+            // ... pass other configs
+        })
+
+        // when you are ready to show the widget, call show method
+        onrampInstance.show()
+
+        // to close the widget, call close method
+        // onrampInstance.close()
         // We set an `isWaiting` variable to track whether or not the confirm
         // function is still running
         isWaiting = true
@@ -116,11 +141,6 @@ on the following occasions:
     // opposed to an assignment) as _reactive_. In this case, every time
     // `transactionXDR` or `transactionNetwork` changes, `transaction` will be
     // recomputed and any dependent components would be updated accordingly.
-    /** @type {import('stellar-sdk').Transaction}*/
-    // @ts-ignore
-    $: transaction = transactionXDR
-        ? TransactionBuilder.fromXDR(transactionXDR, transactionNetwork || Networks.TESTNET)
-        : null
 </script>
 
 <div class="prose p-3">

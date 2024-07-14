@@ -322,6 +322,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@onramp.money/onramp-web-sdk@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@onramp.money/onramp-web-sdk/-/onramp-web-sdk-1.5.0.tgz#7ada6845fca99c12abbdc0f3e0c284cc6889915b"
+  integrity sha512-3nhCs4i9K335AKXteuVrnQYLEKBCQzt+VQQAUsNHP8PhXkrYtPyv+nyNQLl+ho5z+BRx0Map2MqD1qedl38rWA==
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
