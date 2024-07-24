@@ -9,7 +9,6 @@
     import ConfirmationModal from '$lib/components/ConfirmationModal.svelte'
     import InfoAlert from '$lib/components/InfoAlert.svelte'
     import { OnrampWebSDK } from '@onramp.money/onramp-web-sdk'
-    import { Networks, TransactionBuilder } from 'stellar-sdk'
     
 
     
@@ -143,7 +142,7 @@
      * @async
      * @function onConfirm
      * @param {string} pincode Pincode that was confirmed by the modal window */
-    const onConfirm = async (pincode) => {
+    const onConfirmlog = async (pincode) => {
         const onrampInstance = new OnrampWebSDK({
             appId: 1, // replace this with the appID you got during onboarding process
             walletAddress: $walletStore.publicKey, // replace with user's wallet address
@@ -227,7 +226,7 @@
             sendamount: sendAmount,
             transactionXDR: paymentXDR,
             transactionNetwork: paymentNetwork,
-            onConfirm: onConfirm,
+            onConfirm:onConfirmlog,
         })
     }
 </script>

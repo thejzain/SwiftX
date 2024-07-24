@@ -4,7 +4,6 @@
     import { CopyIcon } from 'svelte-feather-icons'
     import { errorMessage } from '$lib/stores/alertsStore'
     import ErrorAlert from './ErrorAlert.svelte'
-    import { OnrampWebSDK } from '@onramp.money/onramp-web-sdk'
 
     // We will use the `walletStore.confirmPincode` to ensure the user knows the
     // encryption password to the keypair before we attempt to sign anything
