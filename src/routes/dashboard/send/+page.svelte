@@ -8,11 +8,17 @@
     
     import ConfirmationModal from '$lib/components/ConfirmationModal.svelte'
     import InfoAlert from '$lib/components/InfoAlert.svelte'
+    import { OnrampWebSDK } from '@onramp.money/onramp-web-sdk'
+    import { Networks, TransactionBuilder } from 'stellar-sdk'
+    
 
     
     import { infoMessage } from '$lib/stores/alertsStore'
     import { contacts } from '$lib/stores/contactsStore'
     import { walletStore } from '$lib/stores/walletStore'
+
+    
+    const { close } = getContext('simple-modal')
 
     
     import {
@@ -138,6 +144,26 @@
      * @function onConfirm
      * @param {string} pincode Pincode that was confirmed by the modal window */
     const onConfirm = async (pincode) => {
+        const onrampInstance = new OnrampWebSDK({
+            appId: 1, // replace this with the appID you got during onboarding process
+            walletAddress: $walletStore.publicKey, // replace with user's wallet address
+            flowType: 1, // 1 -> onramp || 2 -> offramp || 3 -> Merchant checkout
+            fiatType: 1, // 1 -> INR || 2 -> TRY || 3 -> AED || 4 -> MXN || 5-> VND || 6 -> NGN etc. visit Fiat Currencies page to view full list of supported fiat currencies
+            paymentMethod: 1, // 1 -> Instant transafer(UPI) || 2 -> Bank transfer(IMPS/FAST)
+            coinCode: 'xlm',
+            coinAmount: Number(IDBTransaction),
+            lang: 'en', // for more lang values refer
+            // ... pass other configs
+        })
+
+        // when you are ready to show the widget, call show method
+        onrampInstance.show()
+
+        // to close the widget, call close method
+        // onrampInstance.close()
+        // We set an `isWaiting` variable to track whether or not the confirm
+        // function is still running
+     
         // Use the walletStore to sign the transaction
         let signedTransaction = await walletStore.sign({
             transactionXDR: paymentXDR,
