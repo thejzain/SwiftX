@@ -28,27 +28,7 @@
         ? TransactionBuilder.fromXDR(transactionXDR, transactionNetwork || Networks.TESTNET)
         : null
 
-    // Separate function to handle Onramp initialization and display
-    const showOnramp = (/** @type {import("stellar-base").Transaction<import("stellar-base").Memo<import("stellar-base").MemoType>, import("stellar-base").Operation[]>} */ transaction) => {
-        const onrampInstance = new OnrampWebSDK({
-            appId: 1, // replace this with the appID you got during onboarding process
-            walletAddress: $walletStore.publicKey, // replace with user's wallet address
-            flowType: 1, // 1 -> onramp || 2 -> offramp || 3 -> Merchant checkout
-            fiatType: 1, // 1 -> INR || 2 -> TRY || 3 -> AED || 4 -> MXN || 5-> VND || 6 -> NGN etc. visit Fiat Currencies page to view full list of supported fiat currencies
-            paymentMethod: 1, // 1 -> Instant transfer (UPI) || 2 -> Bank transfer (IMPS/FAST)
-            coinCode: 'xlm',
-            coinAmount: Number(transaction),
-            lang: 'en', // for more lang values refer
-            // ... pass other configs
-        })
-
-        // when you are ready to show the widget, call show method
-        onrampInstance.show()
-
-        // to close the widget, call close method
-        // onrampInstance.close()
-    }
-
+    
     // `_onConfirm` is actually run when the user clicks the modal's "confirm"
     // button, and calls (in-turn) the supplied `onConfirm` function
     const _onConfirm = async () => {
