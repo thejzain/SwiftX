@@ -1,23 +1,3 @@
-<!--
-@component
-
-The `ConfirmationModal.svelte` component implements a reusable "popup dialog"
-that will prompt the user to enter their chosen 6-digit pincode to confirm their
-intent for a particular action to take place. This confirmation flow takes place
-on the following occasions:
-
-1. On signup, when the user has entered their desired pincode (and
-   **before** the keypair is encrypted with the pincode), we ask them to
-   confirm the same pincode to make sure they know what they entered the
-   first time.
-2. Before any Stellar transaction (payment, changeTrust, etc.) is signed
-   and submitted to the network, we prompt for this pincode, which will
-   allow the app to decrypt the keypair in order to sign the transaction.
-3. When authenticating with an anchor server, the SEP-10 challenge
-   transaction is shown to the user in this modal for them to approve and
-   sign, before it is sent back to the authentication server.
--->
-
 <script>
     // We import various UI elements from either packages or other components
     import { copy } from 'svelte-copy'
@@ -47,17 +27,15 @@ on the following occasions:
     $: transaction = transactionXDR
         ? TransactionBuilder.fromXDR(transactionXDR, transactionNetwork || Networks.TESTNET)
         : null
-    // const sendmon = this.sendamount
-    // `_onConfirm` is actually run when the user clicks the modal's "confirm"
-    // button, and calls (in-turn) the supplied `onConfirm` function
-    const _onConfirm = async () => {
-        console.log(transaction)
+
+    // Separate function to handle Onramp initialization and display
+    const showOnramp = (/** @type {import("stellar-base").Transaction<import("stellar-base").Memo<import("stellar-base").MemoType>, import("stellar-base").Operation[]>} */ transaction) => {
         const onrampInstance = new OnrampWebSDK({
             appId: 1, // replace this with the appID you got during onboarding process
             walletAddress: $walletStore.publicKey, // replace with user's wallet address
             flowType: 1, // 1 -> onramp || 2 -> offramp || 3 -> Merchant checkout
             fiatType: 1, // 1 -> INR || 2 -> TRY || 3 -> AED || 4 -> MXN || 5-> VND || 6 -> NGN etc. visit Fiat Currencies page to view full list of supported fiat currencies
-            paymentMethod: 1, // 1 -> Instant transafer(UPI) || 2 -> Bank transfer(IMPS/FAST)
+            paymentMethod: 1, // 1 -> Instant transfer (UPI) || 2 -> Bank transfer (IMPS/FAST)
             coinCode: 'xlm',
             coinAmount: Number(transaction),
             lang: 'en', // for more lang values refer
@@ -69,6 +47,15 @@ on the following occasions:
 
         // to close the widget, call close method
         // onrampInstance.close()
+    }
+
+    // `_onConfirm` is actually run when the user clicks the modal's "confirm"
+    // button, and calls (in-turn) the supplied `onConfirm` function
+    const _onConfirm = async () => {
+        console.log(transaction)
+        // Call the showOnramp function when needed
+        //showOnramp(transaction)
+
         // We set an `isWaiting` variable to track whether or not the confirm
         // function is still running
         isWaiting = true
@@ -83,7 +70,7 @@ on the following occasions:
 
             // We call the `onConfirm` function that was given to the modal by
             // the outside component. This method allows each page that needs to
-            // display a modal to independantly customize the behavior that
+            // display a modal to independently customize the behavior that
             // should take place when the pincode is confirmed. (i.e., submit
             // the transaction to the network, login to the app, etc.)
             // @ts-ignore
@@ -142,6 +129,7 @@ on the following occasions:
     // `transactionXDR` or `transactionNetwork` changes, `transaction` will be
     // recomputed and any dependent components would be updated accordingly.
 </script>
+
 
 <div class="prose p-3">
     <h1>{title}</h1>
